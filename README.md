@@ -1,5 +1,14 @@
 # Wallpapers-Anime
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitemap</title>
+</head>
+<body>
+
 <div id="sitemap">
   <ul id="sitemap-pages">
     <b>Pages:</b>
@@ -10,6 +19,7 @@
     <br/>
   </ul>
 </div>
+
 <script>
   function loadSitemapPages(json) {
     var sitemap = "<ul>";
@@ -49,5 +59,9 @@
     document.getElementById('sitemap-posts').innerHTML = sitemap;
   }
 </script>
+
 <script src="https://newyorkmnetwork.blogspot.com/feeds/pages/default?alt=json-in-script&callback=loadSitemapPages"></script>
 <script src="https://newyorkmnetwork.blogspot.com/feeds/posts/default?alt=json-in-script&callback=loadSitemapPosts"></script>
+
+</body>
+</html>
