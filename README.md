@@ -27,13 +27,9 @@
     for (var i = 0; i < entries.length; i++) {
       var entry = entries[i];
       var title = entry.title.$t;
-      var link;
-      for (var j = 0; j < entry.link.length; j++) {
-        if (entry.link[j].rel === 'alternate') {
-          link = entry.link[j].href;
-          break;
-        }
-      }
+      var link = entry.link.find(function(link) {
+        return link.rel === 'alternate';
+      }).href;
       sitemap += "<li><a href='" + link + "'>" + title + "</a></li>";
     }
     sitemap += "</ul>";
@@ -46,13 +42,9 @@
     for (var i = 0; i < entries.length; i++) {
       var entry = entries[i];
       var title = entry.title.$t;
-      var link;
-      for (var j = 0; j < entry.link.length; j++) {
-        if (entry.link[j].rel === 'alternate') {
-          link = entry.link[j].href;
-          break;
-        }
-      }
+      var link = entry.link.find(function(link) {
+        return link.rel === 'alternate';
+      }).href;
       sitemap += "<li><a href='" + link + "'>" + title + "</a></li>";
     }
     sitemap += "</ul>";
@@ -60,8 +52,17 @@
   }
 </script>
 
-<script src="https://newyorkmnetwork.blogspot.com/feeds/pages/default?alt=json-in-script&callback=loadSitemapPages"></script>
-<script src="https://newyorkmnetwork.blogspot.com/feeds/posts/default?alt=json-in-script&callback=loadSitemapPosts"></script>
+<script>
+  // Load sitemap for pages
+  fetch('https://newyorkmnetwork.blogspot.com/feeds/pages/default?alt=json')
+    .then(response => response.json())
+    .then(data => loadSitemapPages(data));
+
+  // Load sitemap for posts
+  fetch('https://newyorkmnetwork.blogspot.com/feeds/posts/default?alt=json')
+    .then(response => response.json())
+    .then(data => loadSitemapPosts(data));
+</script>
 
 </body>
 </html>
